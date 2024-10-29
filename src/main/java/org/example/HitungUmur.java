@@ -26,7 +26,22 @@ public class HitungUmur {
     }
 
     private static int getTahunLahir(Scanner scanner) {
-        int tahunLahir = scanner.nextInt();
+        int tahunLahir = 0;
+        boolean inputValid = false;
+        while (!inputValid) {
+            System.out.print("Masukkan tahun lahir yang valid: ");
+            if (scanner.hasNextInt()) {
+                tahunLahir = scanner.nextInt();
+                if (tahunLahir > 1900 && tahunLahir <= getTahunSekarang()) {
+                    inputValid = true;
+                } else {
+                    System.out.println("Tahun tidak masuk akal. Coba lagi.");
+                }
+            } else {
+                System.out.println("Input tidak valid. Masukkan angka.");
+                scanner.next(); // Membersihkan input yang tidak valid
+            }
+        }
         return tahunLahir;
     }
 
